@@ -61,7 +61,7 @@ public class Menu {
 				shingleSize = scr.nextInt();
 				break;
 			case 4:
-				System.out.println("Please enter the value fro k (amount of minhash).");
+				System.out.println("Please enter the value for k (amount of minhash).");
 				k = scr.nextInt();
 				break;
 			case 5:
