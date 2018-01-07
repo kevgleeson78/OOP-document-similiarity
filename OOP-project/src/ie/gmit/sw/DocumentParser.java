@@ -15,16 +15,15 @@ public class DocumentParser implements Runnable {
 	private String file;
 	private int ss, k;
 
-	public DocumentParser(int docId, Deque<String> buffer, BlockingQueue<Shingle> q, String file, int ss, int k) {
+	public DocumentParser(String file,BlockingQueue<Shingle> q,  int ss, int k) {
 		super();
-		this.docId = docId;
-		this.buffer = buffer;
+		
+		
 		this.q = q;
 		this.file = file;
 		this.ss = ss;
 		this.k = k;
 	}
-
 	@Override
 	public void run() {
 

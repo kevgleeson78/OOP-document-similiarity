@@ -3,6 +3,30 @@ package ie.gmit.sw;
 import java.util.Scanner;
 
 public class Menu {
+	public int getShingleSize() {
+		return shingleSize;
+	}
+	public void setShingleSize(int shingleSize) {
+		this.shingleSize = shingleSize;
+	}
+	public int getK() {
+		return k;
+	}
+	public void setK(int k) {
+		this.k = k;
+	}
+	public int getThrPoolSize() {
+		return thrPoolSize;
+	}
+	public void setThrPoolSize(int thrPoolSize) {
+		this.thrPoolSize = thrPoolSize;
+	}
+	public int getBlockingQSize() {
+		return blockingQSize;
+	}
+	public void setBlockingQSize(int blockingQSize) {
+		this.blockingQSize = blockingQSize;
+	}
 	Scanner scr = new Scanner(System.in);
 	private String doc1;
 	private String doc2;
@@ -66,7 +90,8 @@ public class Menu {
 				break;
 			case 5:
 				System.out.println("Please enter the size of the Blocking Queue.");
-				blockingQSize = scr.nextInt();
+				int bqs = scr.nextInt();
+				setBlockingQSize(bqs);
 				break;
 			case 6:
 				System.out.println("Please enter the ThreadPool Size.");
