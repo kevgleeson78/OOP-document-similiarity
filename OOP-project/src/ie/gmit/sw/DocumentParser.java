@@ -57,6 +57,7 @@ public class DocumentParser implements Runnable {
 	private void addWordsToBuffer(String[] words) {
 		for (String s : words) {
 			buffer.addLast(s);
+			System.out.println(s);
 		}
 
 	}
@@ -71,7 +72,10 @@ public class DocumentParser implements Runnable {
 			}
 		}
 		if (sb.length() > 0) {
-			return (new Shingle(docId, sb.toString().hashCode()));
+			
+			
+			return (new Shingle(1, sb.toString().hashCode()));
+			
 		} else {
 			return null;
 		}
@@ -84,7 +88,7 @@ public class DocumentParser implements Runnable {
 			if(s!=null) {
 				q.put(s);
 			}else {
-				q.put(new Poision(docId,0));
+				q.put(new Poision(1,0));
 			}
 		}
 	}

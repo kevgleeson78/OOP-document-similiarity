@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,8 +48,8 @@ public class Consumer implements Runnable {
 								List<Integer> list = map.get(s.getDocId());
 								if (list == null) {
 									list = new ArrayList<Integer>(k);
-									for (int j = 0; j < list.size(); j++) {
-										list.set(j , Integer.MAX_VALUE);
+									for (int j = 0; j <minHashes.length; j++) {
+										list.add(Integer.MAX_VALUE);
 									}
 									map.put(s.getDocId(), list);
 								} else {
