@@ -1,7 +1,6 @@
 package ie.gmit.sw;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -14,7 +13,7 @@ public class Consumer implements Runnable {
 	private BlockingQueue<Shingle> q;
 	private int k;
 	private int[] minHashes;
-	private Map<Integer, List<Integer>> map = new HashMap<>();
+	private Map<Integer, List<Integer>> map = new ConcurrentHashMap<>();
 	private ExecutorService pool;
 
 	public Consumer(BlockingQueue<Shingle> q, int k, int poolSize) {
@@ -30,10 +29,12 @@ public class Consumer implements Runnable {
 		minHashes = new int[k];
 		for (int i = 0; i < minHashes.length; i++) {
 			minHashes[i] = random.nextInt();
+			
 		}
 	}
 
-	public void run(){
+	@Override
+	public void run() {
 		try {
 			int docCount = 2;
 			while (docCount > 0) {
@@ -41,7 +42,8 @@ public class Consumer implements Runnable {
 				if (s instanceof Poision) {
 					docCount--;
 				} else {
-					pool.execute( new Runnable() {
+					pool.execute(new Runnable() {
+						@Override
 						public void run() {
 							for (int i = 0; i < minHashes.length; i++) {
 								int value = s.getHashCode() ^ minHashes[i]; // ^ - xor(Random generated key)
@@ -50,17 +52,20 @@ public class Consumer implements Runnable {
 									list = new ArrayList<Integer>(k);
 									for (int j = 0; j <minHashes.length; j++) {
 										list.add(Integer.MAX_VALUE);
+										System.out.println(s.getDocId()+">>>>>>"+value);
 									}
 									map.put(s.getDocId(), list);
+
 								} else {
 									if (list.get(i) > value) {
 										list.set(i, value);
+
 									}
 								}
 							}
 						}
 					});
-					
+
 				}
 			}
 		} catch (InterruptedException e) {

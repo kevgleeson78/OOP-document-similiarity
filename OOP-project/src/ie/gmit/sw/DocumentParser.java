@@ -14,11 +14,11 @@ public class DocumentParser implements Runnable {
 	private BlockingQueue<Shingle> q;
 	private String file;
 	private int ss, k;
-
-	public DocumentParser(String file,BlockingQueue<Shingle> q,  int ss, int k) {
+	
+	public DocumentParser(String file,BlockingQueue<Shingle> q,  int ss, int k, int docId) {
 		super();
 		
-		
+		this.docId = docId;
 		this.q = q;
 		this.file = file;
 		this.ss = ss;
@@ -57,7 +57,7 @@ public class DocumentParser implements Runnable {
 	private void addWordsToBuffer(String[] words) {
 		for (String s : words) {
 			buffer.addLast(s);
-			System.out.println(s);
+	
 		}
 
 	}
@@ -69,12 +69,14 @@ public class DocumentParser implements Runnable {
 			if (buffer.peek() != null) {
 				sb.append(buffer.poll());
 				counter++;
+				
 			}
 		}
 		if (sb.length() > 0) {
 			
 			
-			return (new Shingle(1, sb.toString().hashCode()));
+			
+			return (new Shingle(docId, sb.toString().hashCode()));
 			
 		} else {
 			return null;
@@ -83,12 +85,15 @@ public class DocumentParser implements Runnable {
 	}
 
 	private void flushBuffer() throws Exception{
+
 		while(buffer.size()>0) {
 			Shingle  s = getNextShingle();
 			if(s!=null) {
 				q.put(s);
+				
 			}else {
-				q.put(new Poision(1,0));
+				q.put(new Poision(docId,0));
+				
 			}
 		}
 	}
