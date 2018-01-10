@@ -11,12 +11,14 @@ public Shingle(int docId, int hashCode) {
 }
 
 public int getDocId() {
+	
 	return docId;
 }
 public void setDocId(int docId) {
 	this.docId = docId;
 }
 public int getHashCode() {
+	
 	return hashCode;
 }
 public void setHashCode(int hashCode) {
