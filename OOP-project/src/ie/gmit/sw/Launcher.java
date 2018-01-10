@@ -7,11 +7,11 @@ public class Launcher {
 
 	public void launch(String f1, String f2) throws Exception {
 		BlockingQueue<Shingle> q = new LinkedBlockingQueue<>(2);
-		Thread t1 = new Thread(new DocumentParser(f1, q, 6, 20, 1), "T1");
+		Thread t1 = new Thread(new DocumentParser(f1, q, 6, 200, 1), "T1");
 
-		Thread t2 = new Thread(new DocumentParser(f2, q, 6, 20, 2), "T2");
+		Thread t2 = new Thread(new DocumentParser(f2, q, 6, 200, 2), "T2");
 
-		Thread t3 = new Thread(new Consumer(q, 20, 10), "T3");
+		Thread t3 = new Thread(new Consumer(q, 200, 8), "T3");
 
 		t1.start();
 		t2.start();
