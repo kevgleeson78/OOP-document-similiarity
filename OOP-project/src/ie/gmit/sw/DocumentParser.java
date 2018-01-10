@@ -36,6 +36,7 @@ public class DocumentParser implements Runnable {
 				addWordsToBuffer(words);
 				Shingle s = getNextShingle();
 				q.put(s);
+				
 			}
 			flushBuffer();
 			br.close();
@@ -57,7 +58,7 @@ public class DocumentParser implements Runnable {
 	private void addWordsToBuffer(String[] words) {
 		for (String s : words) {
 			buffer.addLast(s);
-	
+			
 		}
 
 	}

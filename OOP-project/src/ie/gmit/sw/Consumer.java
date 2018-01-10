@@ -1,11 +1,12 @@
+
 package ie.gmit.sw;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,7 +14,7 @@ public class Consumer implements Runnable {
 	private BlockingQueue<Shingle> q;
 	private int k;
 	private int[] minHashes;
-	private Map<Integer, List<Integer>> map = new ConcurrentHashMap<>();
+	private Map<Integer, List<Integer>> map = new HashMap<>();
 	private ExecutorService pool;
 
 	public Consumer(BlockingQueue<Shingle> q, int k, int poolSize) {
@@ -52,16 +53,22 @@ public class Consumer implements Runnable {
 									list = new ArrayList<Integer>(k);
 									for (int j = 0; j <minHashes.length; j++) {
 										list.add(Integer.MAX_VALUE);
-										System.out.println(s.getDocId()+">>>>>>"+value);
+										map.put(s.getDocId(), list);
 									}
-									map.put(s.getDocId(), list);
-
+								
+									
 								} else {
 									if (list.get(i) > value) {
 										list.set(i, value);
 
 									}
 								}
+								List<Integer>intersection = new ArrayList<Integer>(map.get(s.getDocId()));
+								intersection.retainAll(list);
+								
+								float jaccard =((float)intersection.size())/
+										((k*2)+((float)intersection.size()));
+								System.out.println(jaccard);
 							}
 						}
 					});
@@ -72,6 +79,7 @@ public class Consumer implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 	}
 

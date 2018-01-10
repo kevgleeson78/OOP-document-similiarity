@@ -9,6 +9,7 @@ public Shingle(int docId, int hashCode) {
 	this.docId = docId;
 	this.hashCode = hashCode;
 }
+
 public int getDocId() {
 	return docId;
 }
