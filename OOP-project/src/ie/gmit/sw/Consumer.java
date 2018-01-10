@@ -2,7 +2,6 @@
 package ie.gmit.sw;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -69,7 +68,7 @@ public class Consumer implements Runnable {
 									List<Integer> intersection = new ArrayList<Integer>(map.get(2));
 									intersection.retainAll(map.get(1));
 
-									float jaccard = ((float) intersection.size())
+									float jaccard = (intersection.size())
 											/ ((k) + ((float) intersection.size()));
 									System.out.println((jaccard * 2) * 100);
 								}
