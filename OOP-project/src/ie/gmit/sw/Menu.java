@@ -34,7 +34,7 @@ public class Menu {
 	private int k;
 	private int blockingQSize;
 	private int thrPoolSize;
-	private int option;
+	private String option;
 
 	public Menu() {
 		doc1 = new String();
@@ -43,11 +43,11 @@ public class Menu {
 		k = 0;
 		blockingQSize = 0;
 		thrPoolSize = 0;
-		option = 0;
+		option =  new String();
 	}
 	GetDoc gDoc = new GetDoc();
-	public void show() {
-		while (option!=7) {
+	public void show() throws Exception {
+		while (!option.equalsIgnoreCase("8")) {
 			System.out.println("");
 			System.out.println("Main Menu");
 			System.out.println("---------------------------");
@@ -64,41 +64,46 @@ public class Menu {
 			System.out.println("");
 			System.out.println("");
 			
-			option = scr.nextInt();
+			option = scr.next();
 			switch (option) {
-			case 1:
+			case "1":
 				System.out.println("please enter the first document url");
-				doc1 = scr.next();
+				scr.nextLine();
+				doc1 = scr.nextLine();
 				gDoc.setPath(doc1);
 				doc1 = gDoc.getPath();
-				System.out.println(doc1);
+				
 				break;
-			case 2:
+			case "2":
 				System.out.println("please enter the second document url");
-				doc2 = scr.next();
+				scr.nextLine();
+				doc2 = scr.nextLine();
 				gDoc.setPath(doc2);
 				doc2 = gDoc.getPath();
-				System.out.println(doc2);
+				
 				break;
-			case 3:
+			case "3":
 				System.out.println("Please enter the Shingle size.");
 				shingleSize = scr.nextInt();
 				break;
-			case 4:
+			case "4":
 				System.out.println("Please enter the value for k (amount of minhash).");
 				k = scr.nextInt();
+				setK(k);
 				break;
-			case 5:
+			case "5":
 				System.out.println("Please enter the size of the Blocking Queue.");
 				int bqs = scr.nextInt();
 				setBlockingQSize(bqs);
 				break;
-			case 6:
+			case "6":
 				System.out.println("Please enter the ThreadPool Size.");
-				thrPoolSize = scr.nextInt();
+				int thrPoolSize = scr.nextInt();
+				setThrPoolSize(thrPoolSize);
 				break;
-			case 7:
+			case "7":
 				System.out.println("option 7");
+				new Launcher().launch(doc1, doc2);
 				break;
 			default:
 				System.out.println("invalid input...");

@@ -66,18 +66,18 @@ public class Consumer implements Runnable {
 										list.set(i, value);
 
 									}
-								}
-
-								if (i == k - 1) {
-									
 									List<Integer> intersection = new ArrayList<Integer>(map.get(2));
 									intersection.retainAll(map.get(1));
 
 									float jaccard = ((float) intersection.size())
 											/ ((k) + ((float) intersection.size()));
-									
 									System.out.println((jaccard * 2) * 100);
 								}
+
+								
+								
+									
+								
 							}
 						}
 					});

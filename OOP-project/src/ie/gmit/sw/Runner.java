@@ -1,19 +1,9 @@
 package ie.gmit.sw;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Runner {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
-		try {
-			new Launcher().launch(
-					"C:\\Users\\kevin\\Desktop\\College Folders\\Object Orientated Programming\\Project\\war.txt",
-					"C:\\Users\\kevin\\Desktop\\College Folders\\Object Orientated Programming\\Project\\tlotr.txt");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new Menu().show();
 		
 		
 	}
