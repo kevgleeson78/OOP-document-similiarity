@@ -18,6 +18,7 @@ public class Consumer implements Runnable {
 	private Map<Integer, List<Integer>> map = new ConcurrentHashMap<>(k);
 	private ExecutorService pool;
 	private int docCount = 2;
+
 	public Consumer(BlockingQueue<Shingle> q, int k, int poolSize) {
 		super();
 		this.q = q;
@@ -26,7 +27,6 @@ public class Consumer implements Runnable {
 		init();
 	}
 
-	
 	public void init() {
 		Random random = new Random();
 		minHashes = new int[k];
@@ -39,12 +39,12 @@ public class Consumer implements Runnable {
 	@Override
 	public void run() {
 		try {
-			
+
 			while (docCount > 0) {
 				Shingle s = q.take();
 				if (s instanceof Poision) {
 					docCount--;
-					
+
 				} else {
 					pool.execute(new Runnable() {
 						@Override
@@ -52,46 +52,44 @@ public class Consumer implements Runnable {
 							for (int i = 0; i < minHashes.length; i++) {
 								int value = s.getHashCode() ^ minHashes[i]; // ^ - xor(Random generated key)
 								List<Integer> list = map.get(s.getDocId());
-								
+
 								if (list == null) {
 									list = new ArrayList<Integer>();
-									for (int j = 0; j <minHashes.length; j++) {
+									for (int j = 0; j < minHashes.length; j++) {
 										list.add(Integer.MAX_VALUE);
 										map.put(s.getDocId(), list);
-										
+
 									}
-									
-									
+
 								} else {
 									if (list.get(i) > value) {
 										list.set(i, value);
 
 									}
 								}
-								
-								
-								if(i ==k-1) {
-								List<Integer>intersection = new ArrayList<Integer>(map.get(2));
-								intersection.retainAll(map.get(1));
-								
-								float jaccard =((float)intersection.size())/
-										((k)+((float)intersection.size()));
-								System.out.println((jaccard*2)*100);
+
+								if (i == k - 1) {
+									
+									List<Integer> intersection = new ArrayList<Integer>(map.get(2));
+									intersection.retainAll(map.get(1));
+
+									float jaccard = ((float) intersection.size())
+											/ ((k) + ((float) intersection.size()));
+									
+									System.out.println((jaccard * 2) * 100);
 								}
 							}
-								}
+						}
 					});
-					
-					}
+
+				}
 			}
-		
+
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 	}
-	
 
 }
