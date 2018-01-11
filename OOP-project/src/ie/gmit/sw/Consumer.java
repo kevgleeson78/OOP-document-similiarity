@@ -3,7 +3,6 @@ package ie.gmit.sw;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -37,6 +36,7 @@ public class Consumer implements Runnable {
 	}
 	int docCount = 2;
 	float jaccard =0;
+	@Override
 	public void run() {
 		
 		while (docCount > 0) {
@@ -72,7 +72,7 @@ public class Consumer implements Runnable {
 										
 										List<Integer> intersection = new ArrayList<Integer>(map.get(2));
 										intersection.retainAll(map.get(1));
-										jaccard = ((float) intersection.size())
+										jaccard = (intersection.size())
 												/ ((k) + ((float) intersection.size()));
 										
 									}
