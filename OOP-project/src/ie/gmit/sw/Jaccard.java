@@ -1,4 +1,5 @@
 package ie.gmit.sw;
+
 /*App Name: Document Jaccard Index Api
  * @Autor Kevin Gleeson
  * Version: 1.0
@@ -11,11 +12,11 @@ import java.util.List;
 
 public class Jaccard extends MinHash {
 
-	
+	// Calculate Jaccard Index.
 
 	private int docCount;
 
-	private float jaccard ;
+	private float jaccard;
 
 	public Jaccard() {
 		super();
@@ -27,24 +28,25 @@ public class Jaccard extends MinHash {
 
 		while (docCount > 0) {
 			try {
-
+//Take Shingle from queue
 				Shingle s = q.take();
 				if (s instanceof Poision) {
-					
+//if queue has been poisioned
 					docCount--;
 				} else {
-
+//New Thread Pool
 					pool.execute(new Runnable() {
 						@Override
 						public void run() {
 							List<Integer> list = map.get(s.getDocId());
 
 							for (int i = 0; i < minHashes.length; i++) {
+								//Get hash code of minHases
 								int value = s.getHashCode() ^ minHashes[i]; // ^ - xor(Random generated key)
 
 								if (list == null) {
 									list = new ArrayList<Integer>(Collections.nCopies(k, Integer.MAX_VALUE));
-
+									//Put the DocId and MinHashes to the list
 									map.put(s.getDocId(), list);
 
 								} else {
@@ -52,7 +54,7 @@ public class Jaccard extends MinHash {
 										list.set(i, value);
 									}
 									map.put(s.getDocId(), list);
-
+									// The setJAccard method
 									setJaccard();
 
 								}
@@ -70,19 +72,21 @@ public class Jaccard extends MinHash {
 				e.printStackTrace();
 			}
 		}
-
+		// Print out the result to the user
 		System.out.println("Document Similarity: " + (jaccard * 2) * 100 + "%");
 	}
-	
+
+	// SetJaccard Method
 	public void setJaccard() {
-		
-	if(docCount==1) {
-				List<Integer> intersection = new ArrayList<Integer>(map.get(2));
-				intersection.retainAll(map.get(1));
-				jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
-	
-	}
-			
+
+		if (docCount == 1) {
+			// get Results from the Comparrison
+			List<Integer> intersection = new ArrayList<Integer>(map.get(2));
+			intersection.retainAll(map.get(1));
+			jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
+
 		}
+
+	}
 
 }

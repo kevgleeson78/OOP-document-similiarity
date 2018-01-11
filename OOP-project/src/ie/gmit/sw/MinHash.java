@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-
+//Class to generate minhashes
 public class MinHash {
 
 	protected BlockingQueue<Shingle> q;
@@ -25,9 +25,12 @@ public class MinHash {
 	}
 
 	public void init() {
+		//Generate Random int
 		Random random = new Random();
+		//create array of k length
 		minHashes = new int[k];
 		for (int i = 0; i < minHashes.length; i++) {
+			//Store a random int in the array
 			minHashes[i] = random.nextInt();
 	
 		}

@@ -6,8 +6,9 @@ package ie.gmit.sw;
  * 
  */
 public class Runner {
+	//main method
 	public static void main(String[] args) throws Exception {
-
+//Show UI menu
 		new Menu().show();
 		
 		

@@ -5,9 +5,13 @@ package ie.gmit.sw;
  * Date: 11/01/2018
  * 
  */
+
+//import scanner class
 import java.util.Scanner;
 
 public class Menu {
+	
+	//getters setters
 	public int getShingleSize() {
 		return shingleSize;
 	}
@@ -32,7 +36,9 @@ public class Menu {
 	public void setBlockingQSize(int blockingQSize) {
 		this.blockingQSize = blockingQSize;
 	}
+	//new scanner
 	Scanner scr = new Scanner(System.in);
+	//Variables for user input
 	private String doc1;
 	private String doc2;
 	private int shingleSize;
@@ -50,9 +56,12 @@ public class Menu {
 		tps = 0;
 		option =  new String();
 	}
+	//New doc object
 	GetDoc gDoc = new GetDoc();
+	//Show method for menu to be used in main class
 	public void show() throws Exception {
 		while (!option.equalsIgnoreCase("8")) {
+			//sysout the ui menu
 			System.out.println("");
 			System.out.println("Main Menu");
 			System.out.println("---------------------------");
@@ -68,8 +77,10 @@ public class Menu {
 			System.out.print("Please select an option from 1-7");
 			System.out.println("");
 			System.out.println("");
-			
+			//Take in option
 			option = scr.next();
+			
+			//Switch staements for user input
 			switch (option) {
 			case "1":
 				System.out.println("please enter the first document url");

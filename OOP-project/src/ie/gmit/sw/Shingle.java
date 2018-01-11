@@ -5,6 +5,8 @@ package ie.gmit.sw;
  * Date: 11/01/2018
  * 
  */
+
+//Shingle class to hold hash code and doc id only
 public class Shingle {
 
 private int docId;

@@ -10,7 +10,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class Launcher {
 
-
+//The class for starting threads
+	//with all of the user value entered in the constructor.
 
 	
 	
