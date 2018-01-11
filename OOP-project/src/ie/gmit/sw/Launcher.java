@@ -18,15 +18,8 @@ public class Launcher {
 		t1.join();
 		t2.join();
 		t3.join();
-		// Jaccard index
-
-		/*
-		 * List<Integer>intersection = new ArrayList<Integer>(a);
-		 * intersection.retainAll(b);
-		 * 
-		 * float jaccard =((float)intersection.size())/
-		 * ((200*2)+((float)intersection.size())); System.out.println(jaccard);
-		 */
+		
+		
 
 	}
 
