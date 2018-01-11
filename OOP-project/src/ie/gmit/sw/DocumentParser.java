@@ -14,16 +14,17 @@ public class DocumentParser implements Runnable {
 	private BlockingQueue<Shingle> q;
 	private String file;
 	private int ss, k;
-	
-	public DocumentParser(String file,BlockingQueue<Shingle> q,  int ss, int k, int docId) {
+
+	public DocumentParser(String file, BlockingQueue<Shingle> q, int ss, int k, int docId) {
 		super();
-		
+
 		this.docId = docId;
 		this.q = q;
 		this.file = file;
 		this.ss = ss;
 		this.k = k;
 	}
+
 	@Override
 	public void run() {
 
@@ -36,10 +37,11 @@ public class DocumentParser implements Runnable {
 				addWordsToBuffer(words);
 				Shingle s = getNextShingle();
 				q.put(s);
-				
+
 			}
-			flushBuffer();
+			q.put(new Poision(docId,0));
 			br.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +60,7 @@ public class DocumentParser implements Runnable {
 	private void addWordsToBuffer(String[] words) {
 		for (String s : words) {
 			buffer.addLast(s);
-			
+
 		}
 
 	}
@@ -70,30 +72,31 @@ public class DocumentParser implements Runnable {
 			if (buffer.peek() != null) {
 				sb.append(buffer.poll());
 				counter++;
-				
+
 			}
 		}
+	
 		if (sb.length() > 0) {
-			
-			
-			
+
 			return (new Shingle(docId, sb.toString().hashCode()));
-			
+
 		} else {
+			
 			return null;
 		}
 
 	}
 
-	private void flushBuffer() throws Exception{
+	private void flushBuffer() throws Exception {
 
-		while(buffer.size()>0) {
-			Shingle  s = getNextShingle();
-			if(s!=null) {
+		while (buffer.size() > 0) {
+			Shingle s = getNextShingle();
+			if (s != null) {
 				q.put(s);
 				
-			}else {
-				q.put(new Poision(docId,0));
+			} else {
+
+				q.put(new Poision(docId, 0));
 				
 			}
 		}
