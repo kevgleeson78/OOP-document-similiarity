@@ -37,7 +37,7 @@ public class Jaccard extends MinHash {
 
 				Shingle s = q.take();
 				if (s instanceof Poision) {
-					System.out.println("test");
+					
 					docCount--;
 				} else {
 
