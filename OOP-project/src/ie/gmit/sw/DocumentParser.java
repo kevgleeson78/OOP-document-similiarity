@@ -13,7 +13,7 @@ public class DocumentParser implements Runnable {
 	private Deque<String> buffer = new LinkedList<>();
 	private BlockingQueue<Shingle> q;
 	private String file;
-	private int ss, k;
+	private int ss;
 
 	public DocumentParser(String file, BlockingQueue<Shingle> q, int ss, int k, int docId) {
 		super();
@@ -22,7 +22,7 @@ public class DocumentParser implements Runnable {
 		this.q = q;
 		this.file = file;
 		this.ss = ss;
-		this.k = k;
+
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class DocumentParser implements Runnable {
 				q.put(s);
 
 			}
-			q.put(new Poision(docId,0));
+			q.put(new Poision(docId, 0));
 			br.close();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,31 +75,16 @@ public class DocumentParser implements Runnable {
 
 			}
 		}
-	
+
 		if (sb.length() > 0) {
 
 			return (new Shingle(docId, sb.toString().hashCode()));
 
 		} else {
-			
+
 			return null;
 		}
 
-	}
-
-	private void flushBuffer() throws Exception {
-
-		while (buffer.size() > 0) {
-			Shingle s = getNextShingle();
-			if (s != null) {
-				q.put(s);
-				
-			} else {
-
-				q.put(new Poision(docId, 0));
-				
-			}
-		}
 	}
 
 }
