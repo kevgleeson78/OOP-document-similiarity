@@ -34,8 +34,9 @@ public class Consumer implements Runnable {
 
 		}
 	}
+
 	int docCount = 2;
-	float jaccard =0;
+	float jaccard;
 	@Override
 	public void run() {
 		
