@@ -58,11 +58,11 @@ public class Menu {
 			System.out.println("---------------------------");
 			System.out.println("1. Enter Document 1");
 			System.out.println("2. Enter Document 2");
-			System.out.println("3. Shingle Size");
-			System.out.println("4. Value of k");
+			System.out.println("3. Shingle Size (6 Recomended for large files)");
+			System.out.println("4. Value of k (200 - 300 recomended)");
 			System.out.println("5. Blocking Queue Size");
 			System.out.println("6. Thread Pool Size");
-			System.out.println("7. exit program");
+			System.out.println("7. Launch  program");
 			System.out.println("----------------------------");
 			System.out.println("");
 			System.out.print("Please select an option from 1-7");
