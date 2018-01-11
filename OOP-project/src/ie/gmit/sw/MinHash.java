@@ -1,5 +1,10 @@
 package ie.gmit.sw;
-
+/*App Name: Document Jaccard Index Api
+ * @Autor Kevin Gleeson
+ * Version: 1.0
+ * Date: 11/01/2018
+ * 
+ */
 import java.util.List;
 import java.util.Map;
 import java.util.Random;

@@ -2,7 +2,12 @@ package ie.gmit.sw;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
+/*App Name: Document Jaccard Index Api
+ * @Autor Kevin Gleeson
+ * Version: 1.0
+ * Date: 11/01/2018
+ * 
+ */
 public class Launcher {
 
 
