@@ -12,7 +12,7 @@ public class MinHash {
 	protected BlockingQueue<Shingle> q;
 	protected int k;
 	protected int[] minHashes;
-	protected Map<Integer, List<Integer>> map = new ConcurrentHashMap<>(k);
+	protected Map<Integer, List<Integer>> map = new ConcurrentHashMap<Integer, List<Integer>>();
 	protected ExecutorService pool;
 
 	public MinHash() {

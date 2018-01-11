@@ -6,28 +6,16 @@ import java.util.List;
 
 public class Jaccard extends MinHash {
 
-	public int getDocCount() {
-		return docCount;
-	}
+	
 
-	public void setDocCount(int docCount) {
-		this.docCount = docCount;
-	}
+	private int docCount;
 
-	public float getJaccard() {
-		return jaccard;
-	}
-
-	public void setJaccard(float jaccard) {
-		this.jaccard = jaccard;
-	}
-
-	int docCount = 2;
-
-	float jaccard = 0;
+	private float jaccard ;
 
 	public Jaccard() {
 		super();
+		docCount = 2;
+		jaccard = 0;
 	}
 
 	public void run() {
@@ -82,14 +70,14 @@ public class Jaccard extends MinHash {
 	}
 	
 	public void setJaccard() {
-		do {
-
-			List<Integer> intersection = new ArrayList<Integer>(map.get(2));
-			intersection.retainAll(map.get(1));
-			jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
-
-		} while (docCount > 0);
 		
+	if(docCount==1) {
+				List<Integer> intersection = new ArrayList<Integer>(map.get(2));
+				intersection.retainAll(map.get(1));
+				jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
+	
 	}
+			
+		}
 
 }

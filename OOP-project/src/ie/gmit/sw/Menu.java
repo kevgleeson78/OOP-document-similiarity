@@ -16,10 +16,10 @@ public class Menu {
 		this.k = k;
 	}
 	public int getThrPoolSize() {
-		return thrPoolSize;
+		return tps;
 	}
-	public void setThrPoolSize(int thrPoolSize) {
-		this.thrPoolSize = thrPoolSize;
+	public void setTps(int tps) {
+		this.tps = tps;
 	}
 	public int getBlockingQSize() {
 		return blockingQSize;
@@ -33,7 +33,7 @@ public class Menu {
 	private int shingleSize;
 	private int k;
 	private int blockingQSize;
-	private int thrPoolSize;
+	private int tps;
 	private String option;
 
 	public Menu() {
@@ -42,7 +42,7 @@ public class Menu {
 		shingleSize = 0;
 		k = 0;
 		blockingQSize = 0;
-		thrPoolSize = 0;
+		tps = 0;
 		option =  new String();
 	}
 	GetDoc gDoc = new GetDoc();
@@ -85,25 +85,26 @@ public class Menu {
 			case "3":
 				System.out.println("Please enter the Shingle size.");
 				shingleSize = scr.nextInt();
+				this.setShingleSize(shingleSize);
 				break;
 			case "4":
 				System.out.println("Please enter the value for k (amount of minhash).");
 				k = scr.nextInt();
-				setK(k);
+				this.setK(k);
 				break;
 			case "5":
 				System.out.println("Please enter the size of the Blocking Queue.");
-				int bqs = scr.nextInt();
-				setBlockingQSize(bqs);
+				blockingQSize = scr.nextInt();
+				this.setBlockingQSize(blockingQSize);
 				break;
 			case "6":
 				System.out.println("Please enter the ThreadPool Size.");
-				int thrPoolSize = scr.nextInt();
-				setThrPoolSize(thrPoolSize);
+				tps = scr.nextInt();
+				this.setTps(tps);
 				break;
 			case "7":
 				System.out.println("option 7");
-				new Launcher().launch(doc1, doc2);
+				new Launcher().launch(doc1, doc2,shingleSize,k,blockingQSize,tps);
 				break;
 			default:
 				System.out.println("invalid input...");
