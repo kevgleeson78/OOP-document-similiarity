@@ -64,29 +64,30 @@ public class Jaccard extends MinHash {
 						}
 
 					});
-
+					// Print out the result to the user
+					System.out.println("Document Similarity: " + (jaccard * 2) * 100 + "%");
 				}
 
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
-		// Print out the result to the user
-		System.out.println("Document Similarity: " + (jaccard * 2) * 100 + "%");
+		
 	}
 
 	// SetJaccard Method
 	public void setJaccard() {
 
-		if (docCount == 1) {
+		if (docCount ==1) {
 			// get Results from the Comparrison
 			List<Integer> intersection = new ArrayList<Integer>(map.get(2));
 			intersection.retainAll(map.get(1));
 			jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
-
+			
 		}
-
+		
 	}
 
 }
