@@ -35,46 +35,41 @@ public class Jaccard extends MinHash {
 					docCount--;
 				} else {
 //New Thread Pool
-					pool.execute(new Runnable() {
-						@Override
-						public void run() {
-							List<Integer> list = map.get(s.getDocId());
-
-							for (int i = 0; i < minHashes.length; i++) {
-								//Get hash code of minHases
-								int value = s.getHashCode() ^ minHashes[i]; // ^ - xor(Random generated key)
-
-								if (list == null) {
-									list = new ArrayList<Integer>(Collections.nCopies(k, Integer.MAX_VALUE));
-									//Put the DocId and MinHashes to the list
-									map.put(s.getDocId(), list);
-
-								} else {
-									if (list.get(i) > value) {
-										list.set(i, value);
-									}
-									map.put(s.getDocId(), list);
-									// The setJAccard method
-									setJaccard();
-
-								}
-
-							}
-
-						}
-
-					});
+					pool.execute(() -> {
+                                            List<Integer> list = map.get(s.getDocId());
+                                            
+                                            for (int i = 0; i < minHashes.length; i++) {
+                                                //Get hash code of minHases
+                                                int value = s.getHashCode() ^ minHashes[i]; // ^ - xor(Random generated key)
+                                                
+                                                if (list == null) {
+                                                    list = new ArrayList<>(Collections.nCopies(k, Integer.MAX_VALUE));
+                                                    //Put the DocId and MinHashes to the list
+                                                    map.put(s.getDocId(), list);
+                                                    
+                                                } else {
+                                                    if (list.get(i) > value) {
+                                                        list.set(i, value);
+                                                    }
+                                                    map.put(s.getDocId(), list);
+                                                    // The setJAccard method
+                                                    setJaccard();
+                                                    
+                                                }
+                                                
+                                            }
+                                        });
 					// Print out the result to the user
-					System.out.println("Document Similarity: " + (jaccard * 2) * 100 + "%");
+					
 				}
 
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                            // TODO Auto-generated catch block
+
 			}
 			
 		}
-		
+		System.out.println("Document Similarity: " + (jaccard * 2) * 100 + "%");
 	}
 
 	// SetJaccard Method
@@ -82,7 +77,7 @@ public class Jaccard extends MinHash {
 
 		if (docCount ==1) {
 			// get Results from the Comparrison
-			List<Integer> intersection = new ArrayList<Integer>(map.get(2));
+			List<Integer> intersection = new ArrayList<>(map.get(2));
 			intersection.retainAll(map.get(1));
 			jaccard = (intersection.size()) / ((k) + ((float) intersection.size()));
 			
