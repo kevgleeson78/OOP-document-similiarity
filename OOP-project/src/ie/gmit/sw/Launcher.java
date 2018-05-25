@@ -1,6 +1,10 @@
 package ie.gmit.sw;
 
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 /*App Name: Document Jaccard Index Api
  * @Autor Kevin Gleeson
@@ -30,9 +34,14 @@ public class Launcher {
 		t1.join();
 		t2.join();
 		t3.join();
-		
-		
+                    
+	
+                 
 
-	}
-
+	} 
+        	
+	
+        
+        
+        
 }
