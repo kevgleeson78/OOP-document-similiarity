@@ -91,9 +91,9 @@ public class Jaccard extends MinHash {
 
         System.out.println("Retrieve the result of the future");
         // Future.get() blocks until the result is available
-        String result = null;
+        
            
-                result = future.get();
+               String result = future.get();
             
         System.out.println(result);
 
