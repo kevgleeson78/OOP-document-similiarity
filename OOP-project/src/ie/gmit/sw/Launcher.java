@@ -1,10 +1,6 @@
 package ie.gmit.sw;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 /*App Name: Document Jaccard Index Api
  * @Autor Kevin Gleeson
@@ -27,21 +23,16 @@ public class Launcher {
 
 		Thread t2 = new Thread(new DocumentParser(f2, q,shingleSize, k, 2), "T2");
 
-		Thread t3 = new Thread(new Consumer(q, k, tps), "T3");
+		Thread t3 = new Thread((Runnable) new Consumer(q, k, tps), "T3");
 		t1.start();
 		t2.start();
 		t3.start();
 		t1.join();
 		t2.join();
 		t3.join();
-                    
-	
-                 
+		
+		
 
-	} 
-        	
-	
-        
-        
-        
+	}
+
 }

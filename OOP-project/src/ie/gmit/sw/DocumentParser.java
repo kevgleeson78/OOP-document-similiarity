@@ -37,7 +37,7 @@ public class DocumentParser implements Runnable {
 		try {
 			//buffered reader to parse text file
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-			String line = null;
+			String line;
 			//Loop to go file line by line until empty
 			while ((line = br.readLine()) != null) {
 				//convert all text to upper case

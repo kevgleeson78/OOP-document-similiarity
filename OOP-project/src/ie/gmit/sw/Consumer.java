@@ -7,9 +7,10 @@ package ie.gmit.sw;
  * 
  */
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 //consumer class to controll the threadpool and itas workers.
-public class Consumer extends Jaccard implements Runnable {
+public  class Consumer extends Jaccard implements Runnable {
 	public Consumer(BlockingQueue<Shingle> q, int k, int poolSize) {
 		super();
 		this.q = q;
