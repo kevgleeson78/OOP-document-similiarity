@@ -31,7 +31,7 @@ public class Jaccard extends MinHash {
 		jaccard = 0;
 	}
 
-	public void run() throws Exception{
+	public synchronized void run(){
 
 		while (docCount > 0) {
 			try {
@@ -44,7 +44,7 @@ public class Jaccard extends MinHash {
 //New Thread Pool
 					pool.execute(new Runnable() {
                                             @Override
-                                            public void run() {
+                                            public synchronized void run() {
                                                 List<Integer> list = map.get(s.getDocId());
                                                 
                                                 for (int i = 0; i < minHashes.length; i++) {
@@ -93,9 +93,16 @@ public class Jaccard extends MinHash {
         // Future.get() blocks until the result is available
         
            
-               String result = future.get();
+               String result;
+			try {
+				result = future.get();
+				System.out.println(result);
+			} catch (InterruptedException | ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             
-        System.out.println(result);
+        
 
         //executorService.shutdown();
 	}
