@@ -7,28 +7,24 @@ package ie.gmit.sw;
  */
 
 //Shingle class to hold hash code and doc id only
-public class Shingle {
+class Shingle {
 
-private int docId;
-private int hashCode;
-public Shingle(int docId, int hashCode) {
-	super();
-	this.docId = docId;
-	this.hashCode = hashCode;
-}
+	private final int docId;
+	private final int hashCode;
 
-public int getDocId() {
-	
-	return docId;
-}
-public void setDocId(int docId) {
-	this.docId = docId;
-}
-public int getHashCode() {
-	
-	return hashCode;
-}
-public void setHashCode(int hashCode) {
-	this.hashCode = hashCode;
-}
+	public Shingle(int docId, int hashCode) {
+		super();
+		this.docId = docId;
+		this.hashCode = hashCode;
+	}
+
+	public int getDocId() {
+
+		return docId;
+	}
+
+	public int getHashCode() {
+
+		return hashCode;
+	}
 }

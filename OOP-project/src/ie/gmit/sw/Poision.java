@@ -7,7 +7,7 @@ package ie.gmit.sw;
  */
 
 //Poision class to Poision the Queue
-public class Poision extends Shingle {
+class Poision extends Shingle {
 
 	public Poision(int docId, int hashCode) {
 		super(docId, hashCode);

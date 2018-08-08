@@ -14,10 +14,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Jaccard extends MinHash {
+class Jaccard extends MinHash {
 
 	// Calculate Jaccard Index.
 
@@ -25,7 +23,7 @@ public class Jaccard extends MinHash {
 
 	private float jaccard;
 
-	public Jaccard() {
+	Jaccard() {
 		super();
 		docCount = 2;
 		jaccard = 0;
@@ -108,7 +106,7 @@ public class Jaccard extends MinHash {
 	}
 
 	// SetJaccard Method
-	public void setJaccard() {
+	private void setJaccard() {
 
 		if (docCount ==1) {
 			// get Results from the Comparrison

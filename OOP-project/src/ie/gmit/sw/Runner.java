@@ -5,7 +5,7 @@ package ie.gmit.sw;
  * Date: 11/01/2018
  * 
  */
-public class Runner {
+ class Runner {
 	//main method
 	public static void main(String[] args) throws Exception {
 //Show UI menu

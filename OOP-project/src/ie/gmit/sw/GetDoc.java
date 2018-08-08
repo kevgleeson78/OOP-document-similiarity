@@ -7,11 +7,11 @@ package ie.gmit.sw;
  */
 
 //Class for storing the url of each file to inserted by the user
-public class GetDoc {
+class GetDoc {
 	private String path;
 
 	public GetDoc() {
-		this.path = new String();
+		this.path = "";
 	}
 
 	public String getPath() {

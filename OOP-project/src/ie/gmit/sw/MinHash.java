@@ -12,19 +12,19 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 //Class to generate minhashes
-public class MinHash {
+class MinHash {
 
-	protected BlockingQueue<Shingle> q;
-	protected int k;
-	protected int[] minHashes;
-	protected Map<Integer, List<Integer>> map = new ConcurrentHashMap<>();
-	protected ExecutorService pool;
+	BlockingQueue<Shingle> q;
+	int k;
+	int[] minHashes;
+	final Map<Integer, List<Integer>> map = new ConcurrentHashMap<>();
+	ExecutorService pool;
 
-	public MinHash() {
+	MinHash() {
 		super();
 	}
 
-	public void init() {
+	void init() {
 		//Generate Random int
 		Random random = new Random();
 		//create array of k length

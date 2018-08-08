@@ -14,14 +14,14 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 //class to parse the document and split each word after a space
 //runnable to used with the threads in launcher class
-public class DocumentParser implements Runnable {
-	private int docId;
-	private Deque<String> buffer = new LinkedList<>();
-	private BlockingQueue<Shingle> q;
-	private String file;
-	private int ss;
+class DocumentParser implements Runnable {
+	private final int docId;
+	private final Deque<String> buffer = new LinkedList<>();
+	private final BlockingQueue<Shingle> q;
+	private final String file;
+	private final int ss;
 //Constructor to take in each user file q ,shingle minhas and docid
-	public DocumentParser(String file, BlockingQueue<Shingle> q, int ss, int k, int docId) {
+	public DocumentParser(String file, BlockingQueue<Shingle> q, int ss, int docId) {
 		super();
 
 		this.docId = docId;
@@ -49,22 +49,13 @@ public class DocumentParser implements Runnable {
 				//create shingle object
 				Shingle s = getNextShingle();
 				//put object in queue
-				q.put(s);
+				q.put(Objects.requireNonNull(s));
 
 			}
 			//poision queue once finished
 			q.put(new Poision(docId, 0));
 			br.close();
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
